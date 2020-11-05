@@ -36,13 +36,15 @@ public class Aspiradora {
             metrosDormitorio2 = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene el segundo dormitorio:"));
         } while (metrosDormitorio2 < 1 || metrosDormitorio2 > 100);
 
-        opciones = Integer.parseInt(JOptionPane.showInputDialog("¿Qué opción desea ver? \n"
-                + "1- Carga \n"
-                + "2- Aspiración \n"
-                + "3- Aspiración y fregado \n"
-                + "4- Estado general \n"
-                + "5- Base de carga \n"
-                + "6- Salir"));
+        do {
+            opciones = Integer.parseInt(JOptionPane.showInputDialog("¿Qué opción desea ver? \n"
+                    + "1- Carga \n"
+                    + "2- Aspiración \n"
+                    + "3- Aspiración y fregado \n"
+                    + "4- Estado general \n"
+                    + "5- Base de carga \n"
+                    + "6- Salir"));
+        } while (opciones < 1 || opciones > 6);
 
         switch (opciones) {
             case 1:
