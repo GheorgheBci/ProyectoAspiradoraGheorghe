@@ -10,8 +10,9 @@ public class Aspiradora {
 
     public static void main(String[] args) {
 
-        int opciones;
+        int opciones, salir;
         double metrosCocina = 0, metrosSalon = 0, metrosBanio = 0, metrosDormitorio = 0, metrosDormitorio2 = 0;
+        boolean repetir = true;
 
         JOptionPane.showMessageDialog(null, "Bienvenido al menú de la aspiradora");
         JOptionPane.showMessageDialog(null, "Primero vamos a indicar cuantos metros tiene cada sala de la vivienda");
@@ -37,34 +38,44 @@ public class Aspiradora {
         } while (metrosDormitorio2 < 1 || metrosDormitorio2 > 100);
 
         do {
-            opciones = Integer.parseInt(JOptionPane.showInputDialog("¿Qué opción desea ver? \n"
-                    + "1- Carga \n"
-                    + "2- Aspiración \n"
-                    + "3- Aspiración y fregado \n"
-                    + "4- Estado general \n"
-                    + "5- Base de carga \n"
-                    + "6- Salir"));
-        } while (opciones < 1 || opciones > 6);
 
-        switch (opciones) {
-            case 1:
-                JOptionPane.showMessageDialog(null, "Has elegido la opción de carga");
-                break;
-            case 2:
-                JOptionPane.showMessageDialog(null, "Has elegido la opción de aspiración");
-                break;
-            case 3:
-                JOptionPane.showMessageDialog(null, "Has elegido la opción de aspiración y fregado");
-                break;
-            case 4:
-                JOptionPane.showMessageDialog(null, "Has elegido la opción de estado general");
-                break;
-            case 5:
-                JOptionPane.showMessageDialog(null, "Has elegido la opción de base de carga");
-                break;
-            case 6:
-                JOptionPane.showMessageDialog(null, "Has elegido salir del programa");
-                break;
-        }
+            do {
+                opciones = Integer.parseInt(JOptionPane.showInputDialog("¿Qué opción desea ver? \n"
+                        + "1- Carga \n"
+                        + "2- Aspiración \n"
+                        + "3- Aspiración y fregado \n"
+                        + "4- Estado general \n"
+                        + "5- Base de carga \n"
+                        + "6- Salir"));
+            } while (opciones < 1 || opciones > 6);
+
+            switch (opciones) {
+                case 1:
+                    JOptionPane.showMessageDialog(null, "Has elegido la opción de carga");
+                    break;
+                case 2:
+                    JOptionPane.showMessageDialog(null, "Has elegido la opción de aspiración");
+                    break;
+                case 3:
+                    JOptionPane.showMessageDialog(null, "Has elegido la opción de aspiración y fregado");
+                    break;
+                case 4:
+                    JOptionPane.showMessageDialog(null, "Has elegido la opción de estado general");
+                    break;
+                case 5:
+                    JOptionPane.showMessageDialog(null, "Has elegido la opción de base de carga");
+                    break;
+                    
+                case 6:
+                    salir = JOptionPane.showConfirmDialog(null,
+                            "¿Deseas salir?", "Salida del programa", JOptionPane.YES_NO_OPTION);
+
+                    if (salir == JOptionPane.YES_OPTION) {
+                        JOptionPane.showMessageDialog(null, "Saliendo con exito");
+                        repetir = false;
+                    }
+                    break;
+            }
+        } while (repetir);
     }
 }
