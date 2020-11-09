@@ -10,8 +10,8 @@ public class Aspiradora {
 
     public static void main(String[] args) {
 
-        final String usuario = "George";
-        final int contrasenia = 12345;
+        final String USUARIO = "George";
+        final int CONTRASENIA = 12345;
 
         int opciones, salir;
         double metrosCocina = 0, metrosSalon = 0, metrosBanio = 0, metrosDormitorio = 0, metrosDormitorio2 = 0;
@@ -24,13 +24,13 @@ public class Aspiradora {
 
         do {
             usuarioCorrecto = JOptionPane.showInputDialog("Usuario incorrecto, prueba de nuevo");
-        } while (!usuarioCorrecto.equals(usuario));
+        } while (!usuarioCorrecto.equals(USUARIO));
 
         contraseniaCorrecto = Integer.parseInt(JOptionPane.showInputDialog("Indica la contraseña"));
 
         do {
             contraseniaCorrecto = Integer.parseInt(JOptionPane.showInputDialog("Contraseña incorrecta, prueba de nuevo"));
-        } while (contraseniaCorrecto != contrasenia);
+        } while (contraseniaCorrecto != CONTRASENIA);
 
         JOptionPane.showMessageDialog(null, "Has accedido con exito al programa");
         JOptionPane.showMessageDialog(null, "Primero vamos a indicar cuantos metros tiene cada sala de la vivienda");
