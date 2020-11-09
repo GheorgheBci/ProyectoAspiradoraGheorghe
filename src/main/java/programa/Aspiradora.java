@@ -10,11 +10,29 @@ public class Aspiradora {
 
     public static void main(String[] args) {
 
+        final String usuario = "George";
+        final int contrasenia = 12345;
+
         int opciones, salir;
         double metrosCocina = 0, metrosSalon = 0, metrosBanio = 0, metrosDormitorio = 0, metrosDormitorio2 = 0;
         boolean repetir = true;
+        String usuarioCorrecto;
+        int contraseniaCorrecto;
 
         JOptionPane.showMessageDialog(null, "Bienvenido al menú de la aspiradora");
+        usuarioCorrecto = JOptionPane.showInputDialog("Indica el usuario");
+
+        do {
+            usuarioCorrecto = JOptionPane.showInputDialog("Usuario incorrecto, prueba de nuevo");
+        } while (!usuarioCorrecto.equals(usuario));
+
+        contraseniaCorrecto = Integer.parseInt(JOptionPane.showInputDialog("Indica la contraseña"));
+
+        do {
+            contraseniaCorrecto = Integer.parseInt(JOptionPane.showInputDialog("Contraseña incorrecta, prueba de nuevo"));
+        } while (contraseniaCorrecto != contrasenia);
+
+        JOptionPane.showMessageDialog(null, "Has accedido con exito al programa");
         JOptionPane.showMessageDialog(null, "Primero vamos a indicar cuantos metros tiene cada sala de la vivienda");
 
         do {
@@ -65,7 +83,7 @@ public class Aspiradora {
                 case 5:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de base de carga");
                     break;
-                    
+
                 case 6:
                     salir = JOptionPane.showConfirmDialog(null,
                             "¿Deseas salir?", "Salida del programa", JOptionPane.YES_NO_OPTION);
