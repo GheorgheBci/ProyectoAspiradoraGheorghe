@@ -14,6 +14,7 @@ public class Aspiradora {
         final int CONTRASENIA = 12345;
 
         int opciones, salir;
+        int opcionesAspiracion;
         double metrosCocina = 0, metrosSalon = 0, metrosBanio = 0, metrosDormitorio = 0, metrosDormitorio2 = 0;
         boolean repetir = true;
         String usuarioCorrecto;
@@ -79,7 +80,14 @@ public class Aspiradora {
 
                 case 2:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de aspiración");
+
+                    do {
+                        opcionesAspiracion = Integer.parseInt(JOptionPane.showInputDialog("¿Qué opción desea hacer? \n"
+                                + "1- Modo completo \n"
+                                + "2- Modo dependencias \n"));
+                    } while (opciones < 1 || opciones > 2);
                     break;
+                    
                 case 3:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de aspiración y fregado");
                     break;
