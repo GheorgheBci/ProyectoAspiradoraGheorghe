@@ -15,11 +15,13 @@ public class Aspiradora {
 
         int opciones, salir;
         int opcionesAspiracion;
-        double metrosCocina = 0, metrosSalon = 0, metrosBanio = 0, metrosDormitorio = 0, metrosDormitorio2 = 0;
         boolean repetir = true;
         String usuarioCorrecto;
         int contraseniaCorrecto;
-        int nivelBateria;
+        int nivelBateria = 0;
+        String dependencia = "";
+
+        double[] metrosDepen = new double[5];
 
         JOptionPane.showMessageDialog(null, "Bienvenido al menú de la aspiradora");
         usuarioCorrecto = JOptionPane.showInputDialog("Indica el usuario");
@@ -37,25 +39,29 @@ public class Aspiradora {
         JOptionPane.showMessageDialog(null, "Has accedido con exito al programa");
         JOptionPane.showMessageDialog(null, "Primero vamos a indicar cuantos metros tiene cada sala de la vivienda");
 
-        do {
-            metrosCocina = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene la cocina:"));
-        } while (metrosCocina < 1 || metrosCocina > 100);
+        for (int i = 0; i < metrosDepen.length; i++) {
+            switch (i) {
+                case 0:
+                    dependencia = "la cocina";
+                    break;
+                case 1:
+                    dependencia = "el salón";
+                    break;
+                case 2:
+                    dependencia = "el cuarto de baño";
+                    break;
+                case 3:
+                    dependencia = "el primer dormitorio";
+                    break;
+                case 4:
+                    dependencia = "el segundo dormitorio";
+                    break;
+            }
 
-        do {
-            metrosSalon = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene el salón:"));
-        } while (metrosSalon < 1 || metrosSalon > 100);
-
-        do {
-            metrosBanio = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene el baño:"));
-        } while (metrosBanio < 1 || metrosBanio > 100);
-
-        do {
-            metrosDormitorio = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene el dormitorio:"));
-        } while (metrosDormitorio < 1 || metrosDormitorio > 100);
-
-        do {
-            metrosDormitorio2 = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene el segundo dormitorio:"));
-        } while (metrosDormitorio2 < 1 || metrosDormitorio2 > 100);
+            do {
+                metrosDepen[i] = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene " + dependencia));
+            } while (metrosDepen[i] < 1 || metrosDepen[i] > 100);
+        }
 
         do {
 
