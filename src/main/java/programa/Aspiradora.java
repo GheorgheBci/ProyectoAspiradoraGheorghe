@@ -86,8 +86,15 @@ public class Aspiradora {
                                 + "1- Modo completo \n"
                                 + "2- Modo dependencias \n"));
                     } while (opciones < 1 || opciones > 2);
+
+                    switch (opcionesAspiracion) {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                    }
                     break;
-                    
+
                 case 3:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de aspiración y fregado");
                     break;
