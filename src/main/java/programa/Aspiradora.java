@@ -18,6 +18,7 @@ public class Aspiradora {
         boolean repetir = true;
         String usuarioCorrecto;
         int contraseniaCorrecto;
+        int nivelBateria;
 
         JOptionPane.showMessageDialog(null, "Bienvenido al menú de la aspiradora");
         usuarioCorrecto = JOptionPane.showInputDialog("Indica el usuario");
@@ -70,7 +71,12 @@ public class Aspiradora {
             switch (opciones) {
                 case 1:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de carga");
+
+                    do {
+                        nivelBateria = Integer.parseInt(JOptionPane.showInputDialog("Indica el nivel de batería que tiene la aspiradora"));
+                    } while (nivelBateria < 0 || nivelBateria > 100);
                     break;
+
                 case 2:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de aspiración");
                     break;
