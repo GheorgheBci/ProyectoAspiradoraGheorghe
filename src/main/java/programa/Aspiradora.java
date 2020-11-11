@@ -23,15 +23,15 @@ public class Aspiradora {
         JOptionPane.showMessageDialog(null, "Bienvenido al menú de la aspiradora");
         usuarioCorrecto = JOptionPane.showInputDialog("Indica el usuario");
 
-        do {
+        while (!usuarioCorrecto.equals(USUARIO)) {
             usuarioCorrecto = JOptionPane.showInputDialog("Usuario incorrecto, prueba de nuevo");
-        } while (!usuarioCorrecto.equals(USUARIO));
+        }
 
         contraseniaCorrecto = Integer.parseInt(JOptionPane.showInputDialog("Indica la contraseña"));
 
-        do {
+        while (contraseniaCorrecto != CONTRASENIA) {
             contraseniaCorrecto = Integer.parseInt(JOptionPane.showInputDialog("Contraseña incorrecta, prueba de nuevo"));
-        } while (contraseniaCorrecto != CONTRASENIA);
+        }
 
         JOptionPane.showMessageDialog(null, "Has accedido con exito al programa");
         JOptionPane.showMessageDialog(null, "Primero vamos a indicar cuantos metros tiene cada sala de la vivienda");
