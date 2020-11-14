@@ -20,9 +20,11 @@ public class Aspiradora {
         int contraseniaCorrecto;
         double nivelBateria = 0;
         String dependencia = "";
+        int contador = 0;
+        double carga = 0;
 
         double[] metrosDepen = new double[5];
-        
+
         String[] dependencias = new String[5];
         dependencias[0] = "la cocina";
         dependencias[1] = "el salón";
@@ -84,7 +86,35 @@ public class Aspiradora {
 
                     switch (opcionesAspiracion) {
                         case 1:
-                            break;                          
+                            JOptionPane.showMessageDialog(null, "Modo completo");
+
+                            for (int i = 0; i < metrosDepen.length; i++) {
+                                carga = (1.5 * metrosDepen[i]) / 1;
+                                nivelBateria = nivelBateria - carga;
+
+                                if (nivelBateria < 3) {
+                                    JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar y esta "
+                                            + "parado en " + dependencias[i] + ", por favor cargue la aspiradora en la base de carga");
+
+                                    for (int j = 0; j != contador; j++) {
+                                        JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencias[j]);
+                                    }
+                                    break;
+                                }
+                                contador++;
+                            }
+                            
+                            if (nivelBateria > 3) {
+                                
+                                if (nivelBateria < 0) {
+                                    nivelBateria = Math.abs(nivelBateria);
+                                }
+                                
+                                JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
+                                        + " un " + nivelBateria + "%");
+                            }
+                            break;
+
                         case 2:
                             break;
                     }
