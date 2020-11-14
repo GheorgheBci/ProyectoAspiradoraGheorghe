@@ -99,17 +99,20 @@ public class Aspiradora {
                                     for (int j = 0; j != contador; j++) {
                                         JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencias[j]);
                                     }
+                                    if (contador == 0) {
+                                        JOptionPane.showMessageDialog(null, "La aspiradora no ha limpiado ninguna habitación");
+                                    }
                                     break;
                                 }
                                 contador++;
                             }
-                            
+
                             if (nivelBateria > 3) {
-                                
+
                                 if (nivelBateria < 0) {
                                     nivelBateria = Math.abs(nivelBateria);
                                 }
-                                
+
                                 JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
                                         + " un " + nivelBateria + "%");
                             }
