@@ -91,11 +91,11 @@ public class Aspiradora {
                         opcionesAspiracion = Integer.parseInt(JOptionPane.showInputDialog("¿Qué opción desea hacer? \n"
                                 + "1- Modo completo \n"
                                 + "2- Modo dependencias \n"));
-                    } while (opciones < 1 || opciones > 2);
+                    } while (opcionesAspiracion < 1 || opcionesAspiracion > 2);
 
                     switch (opcionesAspiracion) {
                         case 1:
-                            break;
+                            break;                          
                         case 2:
                             break;
                     }
