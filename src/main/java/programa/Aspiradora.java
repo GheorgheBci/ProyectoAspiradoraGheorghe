@@ -99,6 +99,7 @@ public class Aspiradora {
                                     for (int j = 0; j != contador; j++) {
                                         JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencias[j]);
                                     }
+
                                     if (contador == 0) {
                                         JOptionPane.showMessageDialog(null, "La aspiradora no ha limpiado ninguna habitación");
                                     }
@@ -129,8 +130,16 @@ public class Aspiradora {
                 case 4:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de estado general");
                     break;
+                    
                 case 5:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de base de carga");
+
+                    if (nivelBateria == 100) {
+                        JOptionPane.showMessageDialog(null, "La batería ya está al 100%");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cargando la aspiradora al 100%...");
+                    }
+                    nivelBateria = 100;
                     break;
 
                 case 6:
