@@ -22,6 +22,13 @@ public class Aspiradora {
         String dependencia = "";
 
         double[] metrosDepen = new double[5];
+        
+        String[] dependencias = new String[5];
+        dependencias[0] = "la cocina";
+        dependencias[1] = "el salón";
+        dependencias[2] = "el cuarto de baño";
+        dependencias[3] = "el primer dormitorio";
+        dependencias[4] = "el segundo dormitorio";
 
         JOptionPane.showMessageDialog(null, "Bienvenido al menú de la aspiradora");
         usuarioCorrecto = JOptionPane.showInputDialog("Indica el usuario");
@@ -40,26 +47,8 @@ public class Aspiradora {
         JOptionPane.showMessageDialog(null, "Primero vamos a indicar cuantos metros tiene cada sala de la vivienda");
 
         for (int i = 0; i < metrosDepen.length; i++) {
-            switch (i) {
-                case 0:
-                    dependencia = "la cocina";
-                    break;
-                case 1:
-                    dependencia = "el salón";
-                    break;
-                case 2:
-                    dependencia = "el cuarto de baño";
-                    break;
-                case 3:
-                    dependencia = "el primer dormitorio";
-                    break;
-                case 4:
-                    dependencia = "el segundo dormitorio";
-                    break;
-            }
-
             do {
-                metrosDepen[i] = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene " + dependencia));
+                metrosDepen[i] = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene " + dependencias[i]));
             } while (metrosDepen[i] < 1 || metrosDepen[i] > 100);
         }
 
