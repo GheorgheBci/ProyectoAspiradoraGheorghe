@@ -18,7 +18,7 @@ public class Aspiradora {
         boolean repetir = true;
         String usuarioCorrecto;
         int contraseniaCorrecto;
-        int nivelBateria = 0;
+        double nivelBateria = 0;
         String dependencia = "";
 
         double[] metrosDepen = new double[5];
