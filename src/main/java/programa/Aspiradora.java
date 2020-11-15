@@ -17,6 +17,7 @@ public class Aspiradora {
         int opcionesAspiracion;
         int opcionesAspiracionFregado;
         int opcionesDependencias;
+        int opcionesDependencias2;
         boolean repetir = true;
         String usuarioCorrecto;
         int contraseniaCorrecto;
@@ -197,8 +198,8 @@ public class Aspiradora {
                             for (int i = 0; i < metrosDepen.length; i++) {
                                 carga = (2.25 * metrosDepen[i]) / 1;
                                 nivelBateria = nivelBateria - carga;
-                                
-                                 if (nivelBateria < 0) {
+
+                                if (nivelBateria < 0) {
                                     nivelBateria = Math.abs(nivelBateria);
                                 }
                                 System.out.println(nivelBateria);
@@ -225,13 +226,62 @@ public class Aspiradora {
                                 contador++;
                             }
 
-                            if (nivelBateria > 3) {                              
+                            if (nivelBateria > 3) {
                                 JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
                                         + " un " + nivelBateria + "%");
-                            }                            
+                            }
                             break;
-                            
+
                         case 2:
+                            JOptionPane.showMessageDialog(null, "Modo dependencias");
+
+                            do {
+                                opcionesDependencias2 = Integer.parseInt(JOptionPane.showInputDialog("¿Qué dependencia quieres limpiar? \n"
+                                        + "0- La cocina \n"
+                                        + "1- El salón \n"
+                                        + "2- El cuarto de baño \n"
+                                        + "3- El primer dormitorio \n"
+                                        + "4- El segundo dormitorio"));
+                            } while (opcionesDependencias2 < 0 || opcionesDependencias2 > 4);
+
+                            switch (opcionesDependencias2) {
+                                case 0:
+                                    dependencia = "la cocina";
+                                    carga = (2.25 * metrosDepen[0]) / 1;
+                                    nivelBateria = nivelBateria - carga;
+                                    break;
+
+                                case 1:
+                                    dependencia = "el salón";
+                                    carga = (2.25 * metrosDepen[1]) / 1;
+                                    nivelBateria = nivelBateria - carga;
+                                    break;
+
+                                case 2:
+                                    dependencia = "el cuarto de baño";
+                                    carga = (2.25 * metrosDepen[2]) / 1;
+                                    nivelBateria = nivelBateria - carga;
+                                    break;
+
+                                case 3:
+                                    dependencia = "el primer dormitorio";
+                                    carga = (2.25 * metrosDepen[3]) / 1;
+                                    nivelBateria = nivelBateria - carga;
+                                    break;
+
+                                case 4:
+                                    dependencia = "el segundo dormitorio";
+                                    carga = (2.25 * metrosDepen[4]) / 1;
+                                    nivelBateria = nivelBateria - carga;
+                                    break;
+                            }
+
+                            if (nivelBateria < 3) {
+                                JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar " + dependencia
+                                        + ", por favor ve a la base de carga");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencia);
+                            }
                             break;
                     }
 
