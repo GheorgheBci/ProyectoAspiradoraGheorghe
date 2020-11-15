@@ -15,6 +15,7 @@ public class Aspiradora {
 
         int opciones, salir;
         int opcionesAspiracion;
+        int opcionesAspiracionFregado;
         int opcionesDependencias;
         boolean repetir = true;
         String usuarioCorrecto;
@@ -182,6 +183,13 @@ public class Aspiradora {
 
                 case 3:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de aspiración y fregado");
+
+                    do {
+                        opcionesAspiracionFregado = Integer.parseInt(JOptionPane.showInputDialog("¿Qué opción desea hacer? \n"
+                                + "1- Modo completo \n"
+                                + "2- Modo dependencias \n"));
+                    } while (opcionesAspiracionFregado < 1 || opcionesAspiracionFregado > 2);
+                    
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de estado general");
