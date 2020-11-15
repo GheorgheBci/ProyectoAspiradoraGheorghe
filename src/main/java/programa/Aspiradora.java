@@ -189,7 +189,52 @@ public class Aspiradora {
                                 + "1- Modo completo \n"
                                 + "2- Modo dependencias \n"));
                     } while (opcionesAspiracionFregado < 1 || opcionesAspiracionFregado > 2);
-                    
+
+                    switch (opcionesAspiracionFregado) {
+                        case 1:
+                            JOptionPane.showMessageDialog(null, "Modo completo");
+
+                            for (int i = 0; i < metrosDepen.length; i++) {
+                                carga = (2.25 * metrosDepen[i]) / 1;
+                                nivelBateria = nivelBateria - carga;
+                                
+                                 if (nivelBateria < 0) {
+                                    nivelBateria = Math.abs(nivelBateria);
+                                }
+                                System.out.println(nivelBateria);
+
+                                if (nivelBateria < 3) {
+                                    JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar y esta "
+                                            + "parado en " + dependencias[i] + ", por favor cargue la aspiradora en la base de carga");
+
+                                    for (int j = 0; j != contador; j++) {
+
+                                        try {
+                                            JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencias[j]);
+                                        } catch (ArrayIndexOutOfBoundsException aiooe) {
+                                            JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
+                                                    + " un " + (nivelBateria = Math.abs(nivelBateria)) + "%");
+                                        }
+                                    }
+
+                                    if (contador == 0) {
+                                        JOptionPane.showMessageDialog(null, "La aspiradora no ha limpiado ninguna habitación");
+                                    }
+                                    break;
+                                }
+                                contador++;
+                            }
+
+                            if (nivelBateria > 3) {                              
+                                JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
+                                        + " un " + nivelBateria + "%");
+                            }                            
+                            break;
+                            
+                        case 2:
+                            break;
+                    }
+
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de estado general");
