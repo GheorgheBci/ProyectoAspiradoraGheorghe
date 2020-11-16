@@ -26,6 +26,7 @@ public class Aspiradora {
         double nivelBateria = 0; // Almacenara el nivel de batería que tendrá la aspiradora
         String dependencia = ""; // Almacenara un nombre de dependencia que le indiquemos
         int contador = 0; // Este contador nos servira para contar cada vez que se ha limpiado una habitación
+        int contador2 = 0; // Esta variable nos servira en que habitación esta parado la aspiradora
         double carga = 0; // Variable que almacenara un valor que luego se restara al nivel de la batería
 
         double[] metrosDepen = new double[5]; // Array que guardara cada metros cuadrado de cada dependencia 
@@ -116,8 +117,13 @@ public class Aspiradora {
                                 if (nivelBateria < 3) {
                                     // Se muestra un mensaje de que la aspiradora no tiene suficiente batería para limpiar la siguiente
                                     // dependencia, además también te indica en que dependencia está parada
-                                    JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar y esta "
-                                            + "parado en " + dependencias[i] + ", por favor cargue la aspiradora en la base de carga");
+                                    try {
+                                        JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar y esta "
+                                                + "parado en " + dependencias[contador2] + ", por favor cargue la aspiradora en la base de carga");
+                                    } catch (Exception e) { // Se mostrara un mensaje de que se ha limpiado todas las habitaciones cuando el for haya terminado de recorrer el array
+                                        JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones");
+                                        break;
+                                    }
 
                                     // Mientras j sea diferente al valor de contador se muestra que dependencias ha limpiado
                                     for (int j = 0; j != contador; j++) {
@@ -138,6 +144,7 @@ public class Aspiradora {
                                     }
                                     break;
                                 }
+                                contador2++; // Este contador es para saber en que habitación se encuentra cuanto se queda sin batería
                                 contador++; // Este contador es para contar cada vez que se limpia una dependencia
                             }
 
@@ -230,15 +237,17 @@ public class Aspiradora {
                             for (int i = 0; i < metrosDepen.length; i++) {
                                 carga = (2.25 * metrosDepen[i]) / 1;
                                 nivelBateria = nivelBateria - carga;
-
-                                if (nivelBateria < 0) {
-                                    nivelBateria = Math.abs(nivelBateria);
-                                }
                                 System.out.println(nivelBateria);
 
                                 if (nivelBateria < 3) {
-                                    JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar y esta "
-                                            + "parado en " + dependencias[i] + ", por favor cargue la aspiradora en la base de carga");
+
+                                    try {
+                                        JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar y esta "
+                                                + "parado en " + dependencias[contador2] + ", por favor cargue la aspiradora en la base de carga");
+                                    } catch (Exception a) { // Se mostrara un mensaje de que se ha limpiado todas las habitaciones cuando el for haya terminado de recorrer el array
+                                        JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones");
+                                        break;
+                                    }
 
                                     for (int j = 0; j != contador; j++) {
 
@@ -255,6 +264,7 @@ public class Aspiradora {
                                     }
                                     break;
                                 }
+                                contador2++;
                                 contador++;
                             }
 
