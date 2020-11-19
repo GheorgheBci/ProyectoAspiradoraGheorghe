@@ -1,5 +1,6 @@
 package programa;
 
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +29,7 @@ public class Aspiradora {
         int contador = 0; // Este contador nos servira para contar cada vez que se ha limpiado una habitación
         int contador2 = 0; // Esta variable nos servira en que habitación esta parado la aspiradora
         double carga = 0; // Variable que almacenara un valor que luego se restara al nivel de la batería
+        int acumuladorMetros = 0; // Con esta variable sumameros el total de metros cuadrados que hay en la casa
 
         double[] metrosDepen = new double[5]; // Array que guardara cada metros cuadrado de cada dependencia 
 
@@ -65,6 +67,8 @@ public class Aspiradora {
                 // Cada tamaño que le indiquemos se almacenara en una posición del array
                 metrosDepen[i] = Double.parseDouble(JOptionPane.showInputDialog("Cuantos metros tiene " + dependencias[i]));
             } while (metrosDepen[i] < 1 || metrosDepen[i] > 100);
+
+            acumuladorMetros += metrosDepen[i]; // Acumulador para que sume los metros totales entre las 5 dependencias
         }
 
         do { // Este bucle controla si salir o no del programa
@@ -110,7 +114,7 @@ public class Aspiradora {
 
                             // En el bucle for la aspiradora empezara a limpiar cada dependencia
                             for (int i = 0; i < metrosDepen.length; i++) {
-                                carga = (1.5 * metrosDepen[i]) / 1; // Calculo para ver cuanta batería consume según el tamaño de la dependencia
+                                carga = (1.5 * metrosDepen[i]); // Calculo para ver cuanta batería consume según el tamaño de la dependencia
                                 nivelBateria = nivelBateria - carga; // Luego restamos el valor de la carga a la batería que tenga en ese momento
 
                                 // Si el nivel de batería es menor de 3
@@ -120,8 +124,9 @@ public class Aspiradora {
                                     try {
                                         JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar y esta "
                                                 + "parado en " + dependencias[contador2] + ", por favor cargue la aspiradora en la base de carga");
-                                    } catch (Exception e) { // Se mostrara un mensaje de que se ha limpiado todas las habitaciones cuando el for haya terminado de recorrer el array
-                                        JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones");
+                                    } catch (ArrayIndexOutOfBoundsException e) { // Se mostrara un mensaje de que se ha limpiado todas las habitaciones cuando el for haya terminado de recorrer el array
+                                        JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
+                                                + " un " + (nivelBateria = Math.abs(nivelBateria)));
                                         break;
                                     }
 
@@ -132,8 +137,7 @@ public class Aspiradora {
                                         try {
                                             JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencias[j]);
                                         } catch (ArrayIndexOutOfBoundsException aiooe) {
-                                            JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
-                                                    + " un " + (nivelBateria = Math.abs(nivelBateria)) + "%");
+                                            JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones");
                                         }
                                     }
 
@@ -145,21 +149,15 @@ public class Aspiradora {
                                     break;
                                 }
                                 contador2++; // Este contador es para saber en que habitación se encuentra cuanto se queda sin batería
-                                contador++; // Este contador es para contar cada vez que se limpia una dependencia
+                                contador++; // Este contador es para contar cada vez que se limpia una dependencia              
+
                             }
 
-                            // En este if solo entrara si ha llegado a limpiar todas las dependencias y la batería sea mayor de 3
-                            if (nivelBateria > 3) {
-
-                                // Si el valor de la batería es un número negativo lo convierte en positivo
-                                if (nivelBateria < 0) {
-                                    nivelBateria = Math.abs(nivelBateria);
-                                }
-
-                                // Se muestra que la aspiradora ha limpiado todas las habitaciones y cuanto % de batería le queda
+                            if (nivelBateria > 3) { // Si el nivelBateria al final de limpiar la aspiradora es mayor que 3 nos muestra un mensaje junto con la batería que tiene en ese momento
                                 JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
                                         + " un " + nivelBateria + "%");
                             }
+
                             break;
 
                         case 2: // En el modo dependencias la aspiradora limpiara la habitación que le indiquemos
@@ -180,42 +178,44 @@ public class Aspiradora {
                             switch (opcionesDependencias) {
                                 case 0: // Limpia la cocina
                                     dependencia = "la cocina";
-                                    carga = (1.5 * metrosDepen[0]) / 1;
+                                    carga = (1.5 * metrosDepen[0]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
 
                                 case 1: // Limpia el salón
                                     dependencia = "el salón";
-                                    carga = (1.5 * metrosDepen[1]) / 1;
+                                    carga = (1.5 * metrosDepen[1]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
 
                                 case 2: // Limpia el cuarto de baño
                                     dependencia = "el cuarto de baño";
-                                    carga = (1.5 * metrosDepen[2]) / 1;
+                                    carga = (1.5 * metrosDepen[2]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
 
                                 case 3: // Limpia el primer dormitorio
                                     dependencia = "el primer dormitorio";
-                                    carga = (1.5 * metrosDepen[3]) / 1;
+                                    carga = (1.5 * metrosDepen[3]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
 
                                 case 4: // Limpia el segundo dormitorio
                                     dependencia = "el segundo dormitorio";
-                                    carga = (1.5 * metrosDepen[4]) / 1;
+                                    carga = (1.5 * metrosDepen[4]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
                             }
 
                             // Despues de limpiar una dependencia controlamos si tiene suficiente batería para limpiar la siguiente habitación
                             // que le indiquemos
-                            if (nivelBateria < 3) { // Si no tiene suficiente batería muestra un mensaje que no tiene batería
+                            if (nivelBateria < 3) { // Si no tiene suficiente batería muestra un mensaje que no tiene 
                                 JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar " + dependencia
                                         + ", por favor ve a la base de carga");
+                                nivelBateria = Math.abs(nivelBateria);
                             } else { // Si el nivel de batería es mayor de 3 muestra que la dependencia que hemos indicado para limpiar se ha limpiado correctamente
-                                JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencia);
+                                JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencia + " y le queda de batería un "
+                                        + (nivelBateria = Math.abs(nivelBateria)));
                             }
                             break;
                     }
@@ -235,40 +235,46 @@ public class Aspiradora {
                             JOptionPane.showMessageDialog(null, "Modo completo");
 
                             for (int i = 0; i < metrosDepen.length; i++) {
-                                carga = (2.25 * metrosDepen[i]) / 1;
-                                nivelBateria = nivelBateria - carga;
-                                System.out.println(nivelBateria);
+                                carga = (2.25 * metrosDepen[i]); // Calculo para ver cuanta batería consume según el tamaño de la dependencia
+                                nivelBateria = nivelBateria - carga; // Luego restamos el valor de la carga a la batería que tenga en ese momento
 
+                                // Si el nivel de batería es menor de 3
                                 if (nivelBateria < 3) {
-
+                                    // Se muestra un mensaje de que la aspiradora no tiene suficiente batería para limpiar la siguiente
+                                    // dependencia, además también te indica en que dependencia está parada
                                     try {
                                         JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar y esta "
                                                 + "parado en " + dependencias[contador2] + ", por favor cargue la aspiradora en la base de carga");
-                                    } catch (Exception a) { // Se mostrara un mensaje de que se ha limpiado todas las habitaciones cuando el for haya terminado de recorrer el array
-                                        JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones");
+                                    } catch (ArrayIndexOutOfBoundsException e) { // Se mostrara un mensaje de que se ha limpiado todas las habitaciones cuando el for haya terminado de recorrer el array
+                                        JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
+                                                + " un " + (nivelBateria = Math.abs(nivelBateria)));
                                         break;
                                     }
 
+                                    // Mientras j sea diferente al valor de contador se muestra que dependencias ha limpiado
                                     for (int j = 0; j != contador; j++) {
 
+                                        // El try catch nos servira para controlar la excepción ArrayIndexOutOfBoundsException
                                         try {
                                             JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencias[j]);
                                         } catch (ArrayIndexOutOfBoundsException aiooe) {
-                                            JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
-                                                    + " un " + (nivelBateria = Math.abs(nivelBateria)) + "%");
+                                            JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones");
                                         }
                                     }
 
+                                    // Si el contador es igual a 0 muestra que la aspiradora no ha limpiado ninguna habitación
+                                    // En este caso es cuando el tamaño de una dependencia es demasiado grande
                                     if (contador == 0) {
                                         JOptionPane.showMessageDialog(null, "La aspiradora no ha limpiado ninguna habitación");
                                     }
                                     break;
                                 }
-                                contador2++;
-                                contador++;
+                                contador2++; // Este contador es para saber en que habitación se encuentra cuanto se queda sin batería
+                                contador++; // Este contador es para contar cada vez que se limpia una dependencia         
+
                             }
 
-                            if (nivelBateria > 3) {
+                            if (nivelBateria > 3) { // Si el nivelBateria al final de limpiar la aspiradora es mayor que 3 nos muestra un mensaje junto con la batería que tiene en ese momento
                                 JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado todas las habitaciones y le queda de batería"
                                         + " un " + nivelBateria + "%");
                             }
@@ -277,6 +283,8 @@ public class Aspiradora {
                         case 2:
                             JOptionPane.showMessageDialog(null, "Modo dependencias");
 
+                            // Mostramos la lista de dependencias que queremos limpiar y con el bucle do while controlamos que el valor
+                            // que introduzcamos sea correcto
                             do {
                                 opcionesDependencias2 = Integer.parseInt(JOptionPane.showInputDialog("¿Qué dependencia quieres limpiar? \n"
                                         + "0- La cocina \n"
@@ -289,47 +297,63 @@ public class Aspiradora {
                             switch (opcionesDependencias2) {
                                 case 0:
                                     dependencia = "la cocina";
-                                    carga = (2.25 * metrosDepen[0]) / 1;
+                                    carga = (2.25 * metrosDepen[0]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
 
                                 case 1:
                                     dependencia = "el salón";
-                                    carga = (2.25 * metrosDepen[1]) / 1;
+                                    carga = (2.25 * metrosDepen[1]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
 
                                 case 2:
                                     dependencia = "el cuarto de baño";
-                                    carga = (2.25 * metrosDepen[2]) / 1;
+                                    carga = (2.25 * metrosDepen[2]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
 
                                 case 3:
                                     dependencia = "el primer dormitorio";
-                                    carga = (2.25 * metrosDepen[3]) / 1;
+                                    carga = (2.25 * metrosDepen[3]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
 
                                 case 4:
                                     dependencia = "el segundo dormitorio";
-                                    carga = (2.25 * metrosDepen[4]) / 1;
+                                    carga = (2.25 * metrosDepen[4]);
                                     nivelBateria = nivelBateria - carga;
                                     break;
                             }
 
-                            if (nivelBateria < 3) {
+                            // Despues de limpiar una dependencia controlamos si tiene suficiente batería para limpiar la siguiente habitación
+                            // que le indiquemos
+                            if (nivelBateria < 3) { // Si no tiene suficiente batería muestra un mensaje que no tiene 
                                 JOptionPane.showMessageDialog(null, "La aspiradora no tiene suficiente batería para limpiar " + dependencia
                                         + ", por favor ve a la base de carga");
-                            } else {
-                                JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencia);
+                                nivelBateria = Math.abs(nivelBateria);
+                            } else { // Si el nivel de batería es mayor de 3 muestra que la dependencia que hemos indicado para limpiar se ha limpiado correctamente
+                                JOptionPane.showMessageDialog(null, "La aspiradora ha limpiado " + dependencia + " y le queda de batería un "
+                                        + (nivelBateria = Math.abs(nivelBateria)));
                             }
                             break;
                     }
 
                     break;
-                case 4:
+                case 4: // En este case vamos a mostrar la fecha y hora actual
                     JOptionPane.showMessageDialog(null, "Has elegido la opción de estado general");
+
+                    Date fecha = new Date(); // Creamos un objeto Date llamado fecha que mostrara la fecha y hora actual
+
+                    JOptionPane.showInternalMessageDialog(null, "Fecha y hora: " + fecha + "\n"
+                            + "Nivel de batería: " + (nivelBateria = Math.abs(nivelBateria)) + "%\n" + ""
+                            + "Lugar donde está parado la aspiradora " + dependencias[contador2] + "\n"
+                            // Cuando la aspiradora ha conseguido limpiar todas las habitaciones si quiero mostrar en que habitación se encuentra me salta una excepción
+                            // ArrayIndexOutOfBoundsException, incluso usando un try catch me sigue saltando el mismo error
+                            //                            + "Depedencias: " + dependencias[0] + ", " + dependencias[1] + ", " + dependencias[2] + ", " + dependencias[3] 
+                            + " y " + dependencias[4] + "\n"
+                            + "Metros totales de la casa: " + acumuladorMetros + " m²");
+
                     break;
 
                 case 5: // En el case 5 cargaremos la batería hasta el 100
