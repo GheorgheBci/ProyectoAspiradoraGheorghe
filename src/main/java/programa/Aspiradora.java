@@ -347,11 +347,10 @@ public class Aspiradora {
 
                     JOptionPane.showInternalMessageDialog(null, "Fecha y hora: " + fecha + "\n"
                             + "Nivel de batería: " + (nivelBateria = Math.abs(nivelBateria)) + "%\n" + ""
-                            + "Lugar donde está parado la aspiradora " + dependencias[contador2] + "\n"
                             // Cuando la aspiradora ha conseguido limpiar todas las habitaciones si quiero mostrar en que habitación se encuentra me salta una excepción
                             // ArrayIndexOutOfBoundsException, incluso usando un try catch me sigue saltando el mismo error
-                            //                            + "Depedencias: " + dependencias[0] + ", " + dependencias[1] + ", " + dependencias[2] + ", " + dependencias[3] 
-                            + " y " + dependencias[4] + "\n"
+                            //                            + "Lugar donde está parado la aspiradora " + dependencias[contador2] + "\n"
+                            + "Depedencias: " + 5 + "\n"
                             + "Metros totales de la casa: " + acumuladorMetros + " m²");
 
                     break;
